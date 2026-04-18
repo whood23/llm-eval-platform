@@ -1,0 +1,4 @@
+# name | url | docs_path
+fastapi     | https://github.com/tiangolo/fastapi          | docs
+langchain   | https://github.com/langchain-ai/langchain     | docs
+kubernetes  | https://github.com/kubernetes/website         | content/en/docs
