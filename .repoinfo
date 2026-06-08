@@ -1,6 +1,0 @@
-# name | url | docs_paths
-# Note: docs_paths can include multiple paths separated by semicolons (e.g., "docs;examples")
-# Only files with extensions .md, .py, .html in doc/docs/example/examples folders will be kept
-
-pydantic    | https://github.com/pydantic/pydantic          | docs;examples;tests
-fastapi    | https://github.com/fastapi/fastapi         | docs;examples;tests

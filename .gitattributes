@@ -1,0 +1,9 @@
+# Store text files with LF in the repo regardless of the OS they were authored on,
+# so a checkout on macOS/Linux never inherits Windows CRLF line endings.
+* text=auto eol=lf
+
+# Treat these as binary (never normalize).
+*.png binary
+*.jpg binary
+*.db binary
+*.ipynb binary

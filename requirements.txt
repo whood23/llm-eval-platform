@@ -1,0 +1,47 @@
+# llm-eval-platform — pinned dependencies for a reproducible dev environment.
+#
+# These are the exact versions the project was built and verified against. Use them to spin
+# up a matching virtualenv (e.g. on a MacBook):
+#
+#   python3 -m venv .venv
+#   source .venv/bin/activate              # Windows: .venv\Scripts\activate
+#   pip install -r requirements.txt
+#   pip install -e .                       # installs the `eval-platform` CLI (deps satisfied)
+#
+# Python 3.10–3.12 recommended (matches `requires-python = >=3.10`). These pins all ship
+# macOS (Apple Silicon + Intel) wheels for that range.
+#
+# This file covers the core runtime + test deps — enough to run the CLI, the test suite, and
+# `eval-platform verify-stats`, and to hand-code the statistics. The OPTIONAL extras at the
+# bottom (real LLM judges, dashboard) are commented out; uncomment what you need, or install
+# them via the pyproject extras: `pip install -e .[all]`.
+
+# --- core runtime ---
+pydantic==2.13.4
+pydantic-settings==2.14.1
+numpy==2.4.4
+scipy==1.17.1
+scikit-learn==1.8.0
+pandas==3.0.3
+matplotlib==3.10.8
+typer==0.25.1
+PyYAML==6.0.3
+python-dotenv==1.2.2
+
+# --- test / dev ---
+pytest==9.0.3
+pytest-cov==7.1.0
+
+# --- optional: real LLM judges (Gemini / DeepSeek / Ollama / OpenAI-compatible) ---
+# Not installed in the authoring environment, so left unpinned; pip will resolve a
+# compatible recent version. Equivalent to `pip install -e .[providers]`.
+# litellm>=1.40
+
+# --- optional: alternative retry/cache backends (the spine ships stdlib fallbacks) ---
+# tenacity>=8
+# diskcache>=5
+
+# --- optional: interactive dashboard (`eval-platform dashboard`) ---
+# Equivalent to `pip install -e .[dashboard]`.
+# streamlit>=1.30
+# plotly>=5

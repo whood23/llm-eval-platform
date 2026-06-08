@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "llm-eval-platform"
+version = "2.0.0.dev0"
+description = "An LLM evaluation platform built as a measurement instrument: validated, calibrated, bias-quantified judges with error bars on every metric."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+dependencies = [
+  "pydantic>=2",
+  "pydantic-settings>=2",
+  "numpy>=1.24",
+  "scipy>=1.10",
+  "scikit-learn>=1.3",
+  "pandas>=2",
+  "matplotlib>=3.7",
+  "typer>=0.9",
+  "pyyaml>=6",
+  "python-dotenv>=1",
+]
+
+[project.optional-dependencies]
+# `litellm` powers the multi-provider judge (Gemini / DeepSeek / Ollama / OpenAI-compatible).
+# Kept optional so the spine imports and runs with the offline `dummy` provider on a bare env.
+providers = ["litellm>=1.40"]
+# Optional: nicer retry/cache backends. The spine ships stdlib fallbacks, so these are not required.
+reliability = ["tenacity>=8", "diskcache>=5"]
+# Phase 6 interactive dashboard. Static HTML/matplotlib reports work without these.
+dashboard = ["streamlit>=1.30", "plotly>=5"]
+dev = ["pytest>=7", "pytest-cov>=4"]
+all = [
+  "litellm>=1.40",
+  "tenacity>=8",
+  "diskcache>=5",
+  "streamlit>=1.30",
+  "plotly>=5",
+  "pytest>=7",
+]
+
+[project.scripts]
+eval-platform = "evalplatform.cli:app"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+evalplatform = ["store/*.sql"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
